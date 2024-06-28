@@ -347,6 +347,147 @@ interface Response : HttpMessage {
         @JvmName("create")
         operator fun invoke(status: Status, version: String = HTTP_1_1): Response =
             MemoryResponse(status, listOf(), EMPTY, version)
+
+
+
+        fun  Continue(): Response{
+           return Response(Status.CONTINUE)
+        }
+        fun SwitchingProtocols(): Response {
+            return Response(Status.SWITCHING_PROTOCOLS)
+        }
+        fun Processing(): Response {
+             return Response(Status(102, "Processing"))
+        }
+
+        fun Ok(): Response {
+            return Response(Status.OK)
+        }
+        fun Created(): Response {
+            return Response(Status.CREATED)
+        }
+        fun Accepted(): Response {
+            return Response(Status.ACCEPTED)
+        }
+        fun NonAuthoritativeInformation(): Response {
+            return Response(Status.NON_AUTHORITATIVE_INFORMATION)
+        }
+        fun NoContent(): Response {
+            return Response(Status.NO_CONTENT)
+        }
+        fun ResetContent(): Response {
+            return Response(Status.RESET_CONTENT)
+        }
+        fun PartialContent(): Response {
+            return Response(Status.PARTIAL_CONTENT)
+        }
+        fun MultiStatus(): Response {
+            return Response(Status(207, "Multi-Status"))
+        }
+
+        fun MultipleChoices(): Response {
+            return Response(Status.MULTIPLE_CHOICES)
+        }
+        fun MovedPermanently(): Response {
+            return Response(Status.MOVED_PERMANENTLY)
+        }
+        fun Found(): Response {
+            return Response(Status.FOUND)
+        }
+        fun SeeOther(): Response {
+            return Response(Status.SEE_OTHER)
+        }
+        fun NotModified(): Response {
+            return Response(Status.NOT_MODIFIED)
+        }
+        fun UseProxy(): Response {
+            return Response(Status.USE_PROXY)
+        }
+        fun TemporaryRedirect(): Response {
+            return Response(Status.TEMPORARY_REDIRECT)
+        }
+        fun PermanentRedirect(): Response {
+            return Response(Status.PERMANENT_REDIRECT)
+        }
+
+        fun BadRequest(): Response {
+            return Response(Status.BAD_REQUEST)
+        }
+        fun Unauthorized(): Response {
+            return Response(Status.UNAUTHORIZED)
+        }
+        fun PaymentRequired(): Response {
+            return Response(Status.PAYMENT_REQUIRED)
+        }
+        fun Forbidden(): Response {
+            return Response(Status.FORBIDDEN)
+        }
+        fun NotFound(): Response {
+            return Response(Status.NOT_FOUND)
+        }
+        fun MethodNotAllowed(): Response {
+            return Response(Status.METHOD_NOT_ALLOWED)
+        }
+        fun NotAcceptable(): Response {
+            return Response(Status.NOT_ACCEPTABLE)
+        }
+        fun ProxyAuthenticationRequired(): Response {
+            return Response(Status.PROXY_AUTHENTICATION_REQUIRED)
+        }
+        fun RequestTimeout(): Response {
+            return Response(Status.REQUEST_TIMEOUT)
+        }
+        fun Conflict(): Response {
+            return Response(Status.CONFLICT)
+        }
+        fun Gone(): Response {
+            return Response(Status.GONE)
+        }
+        fun LengthRequired(): Response {
+            return Response(Status.LENGTH_REQUIRED)
+        }
+        fun PreconditionFailed(): Response {
+            return Response(Status.PRECONDITION_FAILED)
+        }
+        fun UnsupportedMediaType(): Response {
+            return Response(Status.UNSUPPORTED_MEDIA_TYPE)
+        }
+        fun ExpectationFailed(): Response {
+            return Response(Status.EXPECTATION_FAILED)
+        }
+        fun UnprocessableEntity(): Response {
+            return Response(Status.UNPROCESSABLE_ENTITY)
+        }
+        fun UpgradeRequired(): Response {
+            return Response(Status.UPGRADE_REQUIRED)
+        }
+
+        fun TooManyRequests(): Response {
+            return Response(Status.TOO_MANY_REQUESTS)
+        }
+        fun UnavailableForLegalReasons(): Response {
+            return Response(Status.UNAVAILABLE_FOR_LEGAL_REASONS)
+        }
+
+        fun InternalServerError(): Response {
+            return Response(Status.INTERNAL_SERVER_ERROR)
+        }
+        fun NotImplemented(): Response {
+            return Response(Status.NOT_IMPLEMENTED)
+        }
+        fun BadGateway(): Response {
+            return Response(Status.BAD_GATEWAY)
+        }
+        fun ServiceUnavailable(): Response {
+            return Response(Status.SERVICE_UNAVAILABLE)
+        }
+        fun GatewayTimeout(): Response {
+            return Response(Status.GATEWAY_TIMEOUT)
+        }
+        fun VersionNotSupported(): Response {
+            return Response(Status.HTTP_VERSION_NOT_SUPPORTED)
+        }
+
     }
 }
 
