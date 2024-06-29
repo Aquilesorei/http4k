@@ -531,3 +531,71 @@ data class RequestSource(val address: String, val port: Int? = 0, val scheme: St
 fun <T : HttpMessage> T.with(vararg modifiers: (T) -> T): T = modifiers.fold(this) { memo, next -> next(memo) }
 
 fun WebForm.with(vararg modifiers: (WebForm) -> WebForm) = modifiers.fold(this) { memo, next -> next(memo) }
+
+
+/*
+data  class HttpResponseBuilder(private var status:  Status){
+
+    private var response : Response = Response(status);
+
+    fun appendHeader(name: String, value: String?): HttpResponseBuilder {
+        response.header(name ,value)
+        return this
+    }
+
+    fun addHeaders(headers: Headers): HttpResponseBuilder {
+        response.headers(headers)
+        return this
+    }
+
+
+     fun replaceHeader(name: String, value: String?): HttpResponseBuilder {
+         response.replaceHeader(name,value)
+         return this
+     }
+
+     fun replaceHeaders(source: Headers): HttpResponseBuilder {
+         response.replaceHeaders(source)
+         return this;
+     }
+
+     fun removeHeader(name: String): HttpResponseBuilder {
+         response.removeHeader(name)
+         return this
+     }
+
+     fun removeHeaders(prefix: String): HttpResponseBuilder {
+         response.removeHeaders(prefix)
+         return this;
+     }
+
+     fun body(body: Body): Response {
+         response.body(body)
+         return response;
+     }
+
+     fun body(body: String): Response {
+         response.body(body)
+         return response;
+     }
+
+     fun status(status: Status) {
+         this.status = status
+         response.status(status)
+         return this;
+     };
+
+     fun body(body: InputStream, length: Long?): Response {
+         response.body(body,length)
+         return response;
+     }
+
+    override fun toString(): String = response.toMessage()
+
+    override fun equals(other: Any?) = (other is Response
+        && response.headers.areSameHeadersAs(other.headers)
+        && status == other.status
+        && response.body == other.body)
+
+}
+*/
