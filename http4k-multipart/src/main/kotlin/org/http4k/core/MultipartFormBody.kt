@@ -19,8 +19,7 @@ sealed class MultipartEntity : Closeable {
     abstract val name: String
     internal abstract fun applyTo(builder: MultipartFormBuilder): MultipartFormBuilder
 
-    data class Field(override val name: String, val value: String, val headers: Headers = emptyList()) :
-        MultipartEntity() {
+    data class Field(override val name: String, val value: String, val headers: Headers = emptyList()) : MultipartEntity() {
         override fun close() = Unit
 
         override fun applyTo(builder: MultipartFormBuilder) = builder.field(name, value, headers)
