@@ -6,6 +6,7 @@ import io.undertow.Undertow
 import io.undertow.UndertowOptions.ENABLE_HTTP2
 import io.undertow.server.handlers.BlockingHandler
 import io.undertow.server.handlers.GracefulShutdownHandler
+import io.undertow.server.handlers.PredicateHandler
 import org.http4k.core.HttpHandler
 import org.http4k.core.Response
 import org.http4k.core.Status.Companion.BAD_REQUEST
@@ -23,7 +24,8 @@ class Undertow(
     constructor(port: Int = 8000, enableHttp2: Boolean) : this(port, enableHttp2, StopMode.Immediate)
 
     override fun toServer(http: HttpHandler?, ws: WsHandler?, sse: SseHandler?): Http4kServer {
-        val httpHandler =
+
+        val httpHandler  : io.undertow.server.HttpHandler =
             (http ?: { Response(BAD_REQUEST) }).let(::Http4kUndertowHttpHandler).let(::BlockingHandler).let { handler ->
                 if (stopMode is StopMode.Graceful) {
                     GracefulShutdownHandler(handler)
@@ -35,7 +37,7 @@ class Undertow(
 
         val sseCallback = sse?.let { Http4kSetHeadersHandler(sse) }
 
-        val handlerWithWs = predicate(requiresWebSocketUpgrade(), wsCallback, httpHandler)
+        val handlerWithWs :PredicateHandler = predicate(requiresWebSocketUpgrade(), wsCallback, httpHandler)
 
         val handlerWithSse = sseCallback
             ?.let { predicate(hasEventStreamContentType(), sseCallback, handlerWithWs) }
